@@ -33,7 +33,7 @@ public class LavaSrcPlugin implements AudioPlayerManagerConfiguration, SearchMan
 
 		if (sourcesConfig.isSpotify()) {
 			log.info("Registering Spotify audio source manager...");
-			this.spotify = new SpotifySourceManager(pluginConfig.getProviders(), spotifyConfig.getClientId(), spotifyConfig.getClientSecret(), spotifyConfig.getCountryCode(), unused -> manager);
+			this.spotify = new SpotifySourceManager(pluginConfig.getProviders(), manager);
 			if (spotifyConfig.getPlaylistLoadLimit() > 0) {
 				this.spotify.setPlaylistPageLimit(spotifyConfig.getPlaylistLoadLimit());
 			}

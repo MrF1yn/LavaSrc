@@ -9,14 +9,16 @@ import com.sedmelluq.discord.lavaplayer.track.AudioTrackInfo;
 import com.sedmelluq.discord.lavaplayer.track.InternalAudioTrack;
 
 public class SpotifyAudioTrack extends MirroringAudioTrack {
-
+	private AudioTrackInfo trackInfo;
 
 	public SpotifyAudioTrack(AudioTrackInfo trackInfo, SpotifySourceManager sourceManager) {
 		this(trackInfo, null, null, null, null, null, false, sourceManager);
+
 	}
 
 	public SpotifyAudioTrack(AudioTrackInfo trackInfo, String albumName, String albumUrl, String artistUrl, String artistArtworkUrl, String previewUrl, boolean isPreview, MirroringAudioSourceManager sourceManager) {
 		super(trackInfo, albumName, albumUrl, artistUrl, artistArtworkUrl, previewUrl, isPreview, sourceManager);
+		this.trackInfo = trackInfo;
 	}
 
 	@Override
@@ -27,6 +29,10 @@ public class SpotifyAudioTrack extends MirroringAudioTrack {
 	@Override
 	protected AudioTrack makeShallowClone() {
 		return new SpotifyAudioTrack(this.trackInfo, (SpotifySourceManager) this.sourceManager);
+	}
+
+	public AudioTrackInfo getTrackInfo() {
+		return this.trackInfo;
 	}
 
 }
